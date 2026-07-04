@@ -4,6 +4,7 @@ import connectDB from "./lib/db.js"; // Import the connectDB function
 import User from "./model/user.model.js"; // Import the User model
 import Redis from "ioredis"; // Import the Redis client
 import rateLimitter from "./middleware/ratelimit.js";
+import sendEmail from "./lib/sendEmail.js"; // Import the sendEmail function
 dotenv.config();
 
 const app = express();
@@ -24,6 +25,9 @@ app.post("/create", async (req, res) => {
   const { name, email, password } = req.body;
   await redis.del("user:all"); // Clear the cached data in Redis when a new user is created
   const user = await User.create({name, email, password,});
+  
+  await emailQueue.add("send-email", { email }); // Add the email sending task to the queue
+
   return res.json(user);
 });
 
