@@ -1,0 +1,290 @@
+YOUTUBE : https://www.youtube.com/watch?v=_itqpLVS660
+
+Redis Kya Hai?
+
+Redis (Remote Dictionary Server) ek in-memory NoSQL database hai.
+
+Iska matlab:
+
+Data RAM me store hota hai (Hard Disk me nahi).
+Isliye ye MongoDB se bahut fast hota hai.
+Redis ko mostly temporary data store karne ke liye use kiya jata hai.
+
+Ek line definition (README ke liye):
+
+Redis is an in-memory key-value database used for high-speed caching, session management, OTP storage, rate limiting, and message queuing.
+
+1. Cache
+Problem
+
+Suppose tumhari website par 10,000 users hain.
+
+Har baar user profile kholte hi:
+
+User
+   ↓
+Node.js
+   ↓
+MongoDB
+
+Har request MongoDB tak jayegi.
+
+MongoDB slow ho jayegi.
+
+Solution
+
+Pehli baar MongoDB se data lao.
+
+Uske baad Redis me save kar do.
+
+User
+   ↓
+Node.js
+   ↓
+Redis ✅
+   ↓
+MongoDB (sirf first time)
+
+Agle users ko Redis se data milega.
+
+Redis RAM me hota hai isliye milliseconds me response deta hai.
+
+Example:
+
+GET /profile
+
+MongoDB
+
+300ms
+
+Redis
+
+5ms
+2. OTP Store
+
+OTP permanent data nahi hota.
+
+Suppose:
+
+OTP = 483921
+
+Ye sirf
+
+5 minutes
+
+tak valid hai.
+
+MongoDB me rakhna waste hai.
+
+Redis me aise store karte hain:
+
+Key
+
+otp:9876543210
+
+Value
+
+483921
+
+Expiry
+
+300 sec
+
+5 minute baad Redis khud delete kar deta hai.
+
+Is feature ko kehte hain
+
+TTL (Time To Live)
+
+Isliye authentication apps Redis use karti hain.
+
+3. Session Storage
+
+Suppose user login karta hai.
+
+Email
+Password
+
+Verify ho gaya.
+
+Ab har request pe password thodi bhejega.
+
+Server ek Session banata hai.
+
+Session ID
+
+abc123xyz
+
+Redis me save hota hai.
+
+abc123xyz
+
+↓
+
+User ID = 10
+
+Ab jab bhi request aayegi
+
+Cookie
+
+abc123xyz
+
+Redis se user identify ho jayega.
+
+Redis fast hai isliye login system bhi fast hota hai.
+
+4. Authentication
+
+Authentication matlab
+
+"Ye banda kaun hai?"
+
+Example
+
+Login
+
+Redis authentication me directly use nahi hota.
+
+Lekin support karta hai:
+
+OTP
+Session
+Token blacklist
+Refresh token
+
+Example:
+
+JWT Logout
+
+JWT normally expire hone tak valid rehta hai.
+
+Logout ke baad Redis me blacklist kar dete hain.
+
+Blacklisted Token
+
+abc.def.xyz
+
+Agar dubara aaye
+
+Reject
+5. Rate Limiting
+
+Suppose koi hacker login API ko hit kar raha hai.
+
+POST /login
+
+10000 times.
+
+Server crash ho jayega.
+
+Redis har IP ka counter rakhta hai.
+
+IP
+
+192.168.1.10
+
+↓
+
+Count = 15
+
+Rule
+
+10 requests/minute
+
+11th request
+
+429 Too Many Requests
+
+Ye brute-force attacks aur API abuse rokne ke liye use hota hai.
+
+6. Message Queue
+
+Suppose user register hua.
+
+Uske baad
+
+Welcome Email
+SMS
+Notification
+
+sab bhejna hai.
+
+Agar sab immediately karoge
+
+Register
+
+↓
+
+Email
+
+↓
+
+SMS
+
+↓
+
+Notification
+
+API slow ho jayegi.
+
+Instead
+
+Register
+
+↓
+
+Redis Queue
+
+↓
+
+Worker
+
+↓
+
+Email
+
+User ko response turant mil jata hai.
+
+Background worker baad me email bhej deta hai.
+
+Ye asynchronous processing kehlata hai.
+
+Redis ko kyun use karte hain?
+Feature	MongoDB	Redis
+Data Store	Disk	RAM
+Speed	Fast	Extremely Fast
+Permanent Data	✅	❌ (Usually Temporary)
+Cache	❌	✅
+OTP	❌	✅
+Session	❌	✅
+Rate Limiting	❌	✅
+Message Queue	❌	✅
+Interview Definition (1-2 lines)
+
+Redis:
+
+Redis is a high-performance in-memory key-value database used to store temporary data for fast access.
+
+Caching:
+
+Storing frequently accessed data in Redis to reduce database queries and improve response time.
+
+OTP Store:
+
+Storing OTPs with an expiry time (TTL) so they are automatically deleted after they expire.
+
+Session Storage:
+
+Keeping user session data in Redis for fast authentication and scalable login management.
+
+Authentication:
+
+Verifying a user's identity. Redis commonly supports authentication by storing sessions, refresh tokens, OTPs, or token blacklists.
+
+Rate Limiting:
+
+Restricting the number of requests a client can make within a specific time period to prevent abuse and brute-force attacks.
+
+Message Queue:
+
+Temporarily storing tasks (such as sending emails or notifications) so background workers can process them asynchronously without delaying the user's request.
