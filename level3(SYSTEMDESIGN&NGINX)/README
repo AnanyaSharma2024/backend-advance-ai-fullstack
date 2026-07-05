@@ -1,0 +1,457 @@
+YOUTUBE : https://www.youtube.com/watch?v=_itqpLVS660
+
+nginx.conf m likhte h server ko 
+
+DNS kya hai?
+
+DNS (Domain Name System) internet ki phonebook hai.
+
+Ye domain name ko IP address me convert karta hai.
+
+Example:
+
+Tum browser me likhte ho:
+
+google.com
+
+Computer ko google.com samajh nahi aata.
+
+Usko chahiye:
+
+142.250.190.14
+
+DNS ye conversion karta hai.
+
+Types of DNS Records
+A Record
+
+Domain → IPv4
+
+Example
+
+google.com
+
+↓
+
+142.250.xxx.xxx
+AAAA Record
+
+Domain → IPv6
+
+CNAME
+
+Ek domain ko dusre domain par point karta hai.
+
+Example
+
+blog.company.com
+
+↓
+
+company.github.io
+MX Record
+
+Mail Server
+
+Example
+
+gmail.com
+
+Email kaha jayegi?
+
+MX batata hai.
+
+TXT Record
+
+Verification
+
+Jaise
+
+Google Verification
+SPF
+DKIM
+DNS Cache
+
+Pehli baar
+
+google.com
+
+↓
+
+DNS
+
+IP mil gaya.
+
+Ab browser us IP ko yaad rakh leta hai.
+
+Next time
+
+Browser
+
+↓
+
+Cache
+
+↓
+
+Website
+
+DNS ko dubara nahi poochna padta.
+
+Isse website fast khulti hai.
+
+Famous DNS Servers
+
+Google
+
+8.8.8.8
+
+Google Secondary
+
+8.8.4.4
+
+Cloudflare
+
+1.1.1.1
+
+OpenDNS
+
+208.67.222.222
+
+Vertical Scaling Kya Hai?
+
+Vertical Scaling ka matlab hai:
+
+Ek hi server ki power badhana.
+
+Yaani naye server add nahi karte, existing server ko aur powerful bana dete hain.
+
+Example
+
+Pehle tumhare paas server hai:
+
+CPU: 2 Cores
+RAM: 4 GB
+Storage: 100 GB
+
+Traffic badh gaya.
+
+Ab tum upgrade kar dete ho:
+
+CPU: 8 Cores
+RAM: 32 GB
+Storage: 1 TB
+
+Ye Vertical Scaling hai.
+
+Horizontal Scaling Kya Hai?
+
+Horizontal Scaling ka matlab hai:
+
+Ek server ko powerful banane ki jagah naye servers add karna.
+
+Yaani workload ko multiple servers me divide kar diya jata hai.
+
+Example
+
+Pehle:
+
+1 Server
+CPU: 4 Core
+RAM: 8 GB
+
+Traffic bahut badh gaya.
+
+Server upgrade nahi kiya.
+
+Instead:
+
+Server 1
+Server 2
+Server 3
+Server 4
+
+Ye Horizontal Scaling hai.
+
+Load Balancer Kya Hai?
+
+Load Balancer ek traffic manager hota hai jo incoming requests ko multiple servers me distribute karta hai.
+
+Nginx Kya Hai?
+
+Nginx (Engine-X) ek Web Server, Reverse Proxy, aur Load Balancer hai.
+
+Simple definition:
+
+Nginx is a high-performance web server that can also act as a reverse proxy, load balancer, and API gateway.
+
+Real Life Example
+
+Socho ek hotel hai.
+
+Customers directly rooms me nahi jaate.
+
+Pehle Reception par aate hain.
+
+Customer
+     ↓
+ Reception
+     ↓
+Room 101
+Room 102
+Room 103
+
+Yahan:
+
+Reception = Nginx
+Rooms = Backend Servers
+
+Nginx decide karta hai customer ko kis room (server) me bhejna hai.
+
+Nginx ke Main Uses
+1. Reverse Proxy ⭐⭐⭐⭐⭐
+
+Client directly backend se baat nahi karta.
+
+Client
+   │
+   ▼
+Nginx
+   │
+   ▼
+Express Server
+
+Benefits:
+
+Security
+Hide backend
+SSL handling
+Logging
+2. Load Balancer ⭐⭐⭐⭐⭐
+        Nginx
+      ┌──┼──┐
+      ▼  ▼  ▼
+   Node1 Node2 Node3
+
+Nginx by default Round Robin use kar sakta hai.
+
+3. Static Files Serve Karna
+
+HTML
+
+CSS
+
+JS
+
+Images
+
+Videos
+
+Nginx bahut fast serve karta hai.
+
+Isliye React build bhi Nginx se host karte hain.
+
+4. SSL/TLS
+
+HTTPS enable karta hai.
+
+https://example.com
+
+Certificates manage karta hai.
+
+Nginx vs Apache
+Nginx	Apache
+Event-driven	Process/Thread based
+Faster for high traffic	Good for small websites
+Better load balancing	Less commonly used for load balancing
+Lower memory usage	Higher memory usage
+
+1. Reverse Proxy
+Reverse Proxy Kya Hai?
+
+Reverse Proxy client aur backend server ke beech me baithta hai aur client ki requests ko backend tak forward karta hai.
+
+Without Reverse Proxy
+Client
+   │
+   ▼
+Node.js Server
+
+Client ko backend server ka address pata hai.
+
+With Reverse Proxy
+Client
+   │
+   ▼
+ Nginx
+   │
+   ▼
+Node.js Server
+
+Ab client sirf Nginx ko jaanta hai.
+
+Backend hidden rehta hai.
+
+Benefits
+✅ Security
+✅ Backend hide hota hai
+✅ SSL handle karta hai
+✅ Logging
+✅ Load balancing
+2. Load Balancing
+Load Balancing Kya Hai?
+
+Incoming requests ko multiple servers me distribute karna.
+
+Example:
+
+              Nginx
+                │
+      ┌─────────┼─────────┐
+      ▼         ▼         ▼
+   Server1   Server2   Server3
+
+Requests:
+
+Req1 → Server1
+Req2 → Server2
+Req3 → Server3
+Req4 → Server1
+
+Ye Round Robin algorithm ka example hai.
+
+Benefits
+✅ Fast response
+✅ Server overload nahi hota
+✅ High availability
+✅ Horizontal scaling support
+3. SSL (HTTPS)
+SSL Kya Hai?
+
+SSL (Secure Sockets Layer) aur uska modern version TLS browser aur server ke beech data ko encrypt karte hain.
+
+Without SSL:
+
+http://example.com
+
+Data plain text me jata hai.
+
+Agar koi hacker beech me ho to password dekh sakta hai.
+
+With SSL:
+
+https://example.com
+
+Data encrypted hota hai.
+
+Example:
+
+Without SSL
+
+Password = ananya123
+
+With SSL
+
+x9A$!@7kLm#...
+
+Sirf server hi decrypt kar sakta hai.
+
+Nginx kya karta hai?
+SSL Certificate install karta hai.
+HTTP → HTTPS redirect karta hai.
+Encryption handle karta hai.
+4. Routing
+Routing Kya Hai?
+
+URL ke basis par request ko sahi backend ya service tak bhejna.
+
+Example:
+
+Client
+   │
+   ▼
+ Nginx
+
+Agar request hai:
+
+/api
+
+↓
+
+Node.js Backend
+
+Agar request hai:
+
+/images
+
+↓
+
+Images Folder
+
+Agar request hai:
+
+/admin
+
+↓
+
+Admin Server
+
+API Gateway Kya Hai?
+
+API Gateway ek single entry point hota hai jo client ki saari requests receive karta hai aur unhe sahi backend service tak bhejta hai.
+
+Simple language me:
+
+Client directly backend services se baat nahi karta. Pehle API Gateway ke paas jata hai.
+
+route check krke uss route wale server pr bhejta h jaise ek autentication ke liye h ek payment ke liye h and ek bla bla 
+
+An API Gateway is a single entry point for client requests. It routes requests to the appropriate backend service and can also handle authentication, rate limiting, logging, caching, SSL termination, and request aggregation.
+
+10-Second Interview Answer
+
+API Gateway acts as the front door of a backend system. Clients send all requests to the gateway, which forwards them to the correct microservice while also providing features like authentication, routing, rate limiting, logging, caching, and load balancing.
+
+Easy Trick to Remember
+
+API Gateway = Smart Receptionist
+
+🚪 One Entry Point → Client sirf gateway ko jaanta hai.
+🧭 Routing → Sahi service tak request bhejta hai.
+🔐 Authentication → User verify karta hai.
+🚦 Rate Limiting → Request limit control karta hai.
+📊 Logging → Requests record karta hai.
+⚡ Caching → Fast responses ke liye cache use karta hai.
+⚖️ Load Balancing → Zarurat padne par multiple instances me traffic distribute karta hai.
+
+An API Gateway is a single entry point for client requests. It routes requests to the appropriate backend service and can also handle authentication, rate limiting, logging, caching, SSL termination, and request aggregation.
+
+10-Second Interview Answer
+
+API Gateway acts as the front door of a backend system. Clients send all requests to the gateway, which forwards them to the correct microservice while also providing features like authentication, routing, rate limiting, logging, caching, and load balancing.
+
+Easy Trick to Remember
+
+API Gateway = Smart Receptionist
+
+🚪 One Entry Point → Client sirf gateway ko jaanta hai.
+🧭 Routing → Sahi service tak request bhejta hai.
+🔐 Authentication → User verify karta hai.
+🚦 Rate Limiting → Request limit control karta hai.
+📊 Logging → Requests record karta hai.
+⚡ Caching → Fast responses ke liye cache use karta hai.
+
+
+Difference yaad rakho:
+
+Load Balancer = Same service ke multiple servers me load baantna.
+API Gateway = Alag-alag services ko manage aur route karna, saath hi authentication, rate limiting, caching jaise features dena.
+
+BAHOTT SAARE GATEWAYS BANA DO THEN GINX SE CONNECT KRDO VO TRAFIC HISAB SE GATEWAY PR BHEJEGA TOH ISS POORE CHEEZ KO MICRO-SERVICES BOLTE HAI
+
+JAB EK HI SERVER SAB HANDLE KR RHATHA TOH USSE MONOLITH BOLTE HAI
+
+JAB HAR SERVICE KE LIYE NAYA SERVER CREATE KRTA H USSE MICRO-SERVIES BOLTE HAI 
+
+
+
