@@ -453,5 +453,11 @@ JAB EK HI SERVER SAB HANDLE KR RHATHA TOH USSE MONOLITH BOLTE HAI
 
 JAB HAR SERVICE KE LIYE NAYA SERVER CREATE KRTA H USSE MICRO-SERVIES BOLTE HAI 
 
+Interview Definition
 
+Sharding is a database scaling technique where data is partitioned across multiple database servers (called shards) so that each server stores only a portion of the data, improving scalability and performance.
+
+10-Second Interview Answer
+
+Sharding means splitting a large database into smaller parts and distributing those parts across multiple servers. It helps handle large amounts of data and traffic by distributing the load instead of storing everything on a single database server.
 

@@ -1,0 +1,45 @@
+LangChain kya hai?
+
+LangChain ek framework hai jo LLM ko memory, tools, databases, APIs aur workflows ke saath connect karta hai.
+
+Simple words me:
+
+LLM = Brain 🧠
+
+LangChain = Brain + Superpowers ⚡
+
+Without LangChain
+User
+   │
+   ▼
+ Gemini
+   │
+ Answer
+
+Bas answer generate karega.
+
+With LangChain
+User
+   │
+   ▼
+LangChain
+   │
+ ┌─┼──────────────┐
+ │ │              │
+ ▼ ▼              ▼
+LLM  Google Search  Database
+ │
+ ▼
+Redis Memory
+ │
+ ▼
+Vector DB
+ │
+ ▼
+Final Answer
+
+LangChain is an open-source framework that helps developers build LLM-powered applications by connecting language models with external tools, APIs, databases, memory, vector databases, and workflows. It enables features like conversation memory, Retrieval-Augmented Generation (RAG), tool calling, and AI agents.
+
+
+
+
