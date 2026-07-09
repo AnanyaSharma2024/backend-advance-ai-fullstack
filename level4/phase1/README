@@ -1,0 +1,116 @@
+LangChain kya hai?
+
+LangChain ek framework hai jo LLM ko memory, tools, databases, APIs aur workflows ke saath connect karta hai.
+
+Simple words me:
+
+LLM = Brain 🧠
+
+LangChain = Brain + Superpowers ⚡
+
+Without LangChain
+User
+   │
+   ▼
+ Gemini
+   │
+ Answer
+
+Bas answer generate karega.
+
+With LangChain
+User
+   │
+   ▼
+LangChain
+   │
+ ┌─┼──────────────┐
+ │ │              │
+ ▼ ▼              ▼
+LLM  Google Search  Database
+ │
+ ▼
+Redis Memory
+ │
+ ▼
+Vector DB
+ │
+ ▼
+Final Answer
+
+LangChain is an open-source framework that helps developers build LLM-powered applications by connecting language models with external tools, APIs, databases, memory, vector databases, and workflows. It enables features like conversation memory, Retrieval-Augmented Generation (RAG), tool calling, and AI agents.
+
+LangGraph kya hai?
+
+LangGraph ek framework hai jo complex AI Agents banane ke liye use hota hai. Isme AI multiple steps me soch sakta hai, decision le sakta hai, retry kar sakta hai aur tools use kar sakta hai.
+
+Simple line:
+
+LangChain = Workflow
+LangGraph = Intelligent Workflow + Decision Making
+Without LangGraph
+
+Suppose user bolta hai:
+
+"Mujhe Delhi ka weather batao."
+
+User
+   │
+   ▼
+LLM
+   │
+Answer
+
+Bas ek hi step.
+
+LangChain
+User
+   │
+   ▼
+LLM
+   │
+Weather API
+   │
+LLM
+   │
+Answer
+
+Multiple steps hain, lekin mostly linear.
+
+LangGraph
+          User
+            │
+            ▼
+        Planner Node
+            │
+     ┌──────┴──────┐
+     ▼             ▼
+Search Tool   Database Tool
+     │             │
+     └──────┬──────┘
+            ▼
+      LLM Reasoning
+            │
+     Enough Info?
+      │         │
+     No         Yes
+      │          │
+      ▼          ▼
+ Search Again   Final Answer
+
+Yahan AI decide karta hai:
+
+Search karni hai ya nahi.
+Kaunsa tool use karna hai.
+Dobara try karna hai ya nahi.
+Final answer kab dena hai.
+
+Yehi Graph hai.
+
+Interview Definition
+
+LangGraph is a framework for building stateful, multi-step AI agent workflows using a graph of interconnected nodes. Unlike linear chains, it supports branching, looping, retries, and decision-making, making it suitable for complex AI agents.
+
+
+Tavily is a search API designed for AI applications. It allows LLMs and AI agents to retrieve up-to-date information from the web, making it useful for real-time search, RAG systems, and autonomous agents built with frameworks like LangChain and LangGraph.
+
