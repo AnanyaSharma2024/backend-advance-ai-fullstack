@@ -1,0 +1,33 @@
+Embedding:
+
+Embedding is the process of converting text, images, or other data into high-dimensional numerical vectors that capture their semantic meaning.
+
+Vector Database:
+
+A Vector Database stores embeddings and performs similarity search to retrieve the most semantically relevant data. It is widely used in RAG systems, semantic search, recommendation systems, and AI agents.
+
+RAG (Retrieval-Augmented Generation)
+
+RAG ek technique hai jisme AI answer dene se pehle relevant data search karta hai, phir us data ko use karke answer generate karta hai.
+
+Short Flow
+User Question
+      ↓
+Embedding
+      ↓
+Vector Database Search
+      ↓
+Relevant Documents
+      ↓
+LLM (Gemini/GPT)
+      ↓
+Final Answer
+Example
+
+User: "Company ki leave policy kya hai?"
+
+Without RAG: AI → "I don't know."
+With RAG: AI → Company ke documents search karega → Leave Policy PDF milegi → Uske basis par sahi answer dega.
+One-line Definition
+
+RAG = Search first, Answer later.
